@@ -15,7 +15,6 @@ const Board = () => {
   useEffect(() => {
     getBoard();
   }, [getBoard]);
-  console.log({ board });
   const handleOnDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
     if (!destination) return;
