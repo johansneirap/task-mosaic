@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import Column from "./Column";
 import { useSession } from "next-auth/react";
+import Hero from "./Hero";
 const Board = () => {
   const { data: session } = useSession();
 
@@ -86,7 +87,7 @@ const Board = () => {
       setBoard({ ...board, columns: newColumns });
     }
   };
-  if (!session) return null;
+  if (!session) return <Hero />;
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="column">
