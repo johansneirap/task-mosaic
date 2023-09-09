@@ -1,7 +1,7 @@
 import Modal from "@/components/Modal";
 import "./globals.css";
 import type { Metadata } from "next";
-
+import Providers from "@/providers";
 export const metadata: Metadata = {
   title: "Task Mosaic",
   description: "Organising and managing your tasks",
@@ -15,8 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-[#F5F6F8]">
-        {children}
-        <Modal />
+        <Providers>
+          {children}
+          <Modal />
+        </Providers>
       </body>
     </html>
   );

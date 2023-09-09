@@ -4,7 +4,10 @@ import { useBoardStore } from "@/store/BoardStore";
 import { useEffect } from "react";
 import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import Column from "./Column";
+import { useSession } from "next-auth/react";
 const Board = () => {
+  const { data: session } = useSession();
+
   const [board, getBoard, setBoard, updateTodoInDB] = useBoardStore((state) => [
     state.board,
     state.getBoard,
@@ -13,8 +16,8 @@ const Board = () => {
   ]);
 
   useEffect(() => {
-    getBoard();
-  }, [getBoard]);
+    getBoard(session?.user?.email ?? "");
+  }, [getBoard, session]);
   const handleOnDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
     if (!destination) return;
@@ -83,6 +86,7 @@ const Board = () => {
       setBoard({ ...board, columns: newColumns });
     }
   };
+  if (!session) return null;
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="column">

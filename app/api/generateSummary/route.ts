@@ -2,7 +2,7 @@ import openai from "@/openai";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
-  const { todos } = await request.json();
+  const { todos, userName } = await request.json();
 
   // comunicate with OpenAI GPT
   const response = await openai.chat.completions.create({
@@ -13,8 +13,7 @@ export async function POST(request: Request) {
     messages: [
       {
         role: "system",
-        content:
-          "When responding, welcome the user always as Johans and say Welcome to the Task Mosaic TODO App! Limit the response to 200 characters",
+        content: `When responding, welcome the user always as ${userName} and say Welcome to the Task Mosaic TODO App! Limit the response to 200 characters`,
       },
       {
         role: "user",

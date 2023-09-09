@@ -6,10 +6,11 @@ import { useBoardStore } from "@/store/BoardStore";
 import TaskTypeRadioGroup from "./TaskTypeRadioGroup";
 import Image from "next/image";
 import { PhotoIcon } from "@heroicons/react/20/solid";
+import { useSession } from "next-auth/react";
 
 function Modal() {
   const imagePickerRef = useRef<HTMLInputElement>(null);
-
+  const { data: session } = useSession();
   const [isOpen, closeModal] = useModalStore((state) => [
     state.isOpen,
     state.closeModal,
@@ -28,7 +29,7 @@ function Modal() {
     e.preventDefault();
     if (!newTaskInput) return;
 
-    addTask(newTaskInput, newTaskType, image);
+    addTask(newTaskInput, newTaskType, session?.user?.email ?? "", image);
     setImage(null);
     closeModal();
   };
