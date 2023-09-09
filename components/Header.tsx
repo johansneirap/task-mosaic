@@ -28,15 +28,15 @@ function Header() {
   }, [board]);
   return (
     <header>
-      <div className="flex flex-col md:flex-row items-center p-5 bg-gray-500/10 rounded-b-2xl">
+      <div className="flex flex-col md:flex-row items-center p-2 md:px-20 bg-gray-500/10 rounded-b-2xl">
         <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-br from-pink-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50"></div>
         {/* Replace this image with the real one */}
         <Image
-          src="@/public/next.svg"
+          src="/task-mosaic-nobg.png"
           alt="Task Mosaic Logo"
-          width={300}
-          height={100}
-          className="w-44 md:w-56 pb-10 md:pb-0 object-contain"
+          width={100}
+          height={60}
+          className="w-32 md:w-20 pb-0 md:pb-0 object-contain scale-125"
         />
         <div className="flex items-center space-x-5 flex-1 justify-end w-full">
           <form className="flex items-center space-x-5 bg-white rounded-md p-2 shadow-md flex-1 md:flex-initial">
